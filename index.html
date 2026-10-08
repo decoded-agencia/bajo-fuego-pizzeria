@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080706">
+  <meta name="description" content="Bajo Fuego Pizzería — donde la masa se encuentra con el fuego.">
+  <title>Bajo Fuego Pizzería</title>
+  <link rel="icon" type="image/png" href="/logo-bajo-fuego-bg.png">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Oswald:wght@400;500;600;700&display=swap');
+
+    :root{
+      --black:#080706;
+      --black-2:#100d0b;
+      --red:#e22a16;
+      --red-dark:#8e170e;
+      --cream:#e9bd79;
+      --cream-light:#f3d29a;
+      --muted:#9f8060;
+      --line:rgba(226,42,22,.65);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--cream-light);
+      background:
+        radial-gradient(circle at 50% 10%, rgba(226,42,22,.13), transparent 30%),
+        radial-gradient(circle at 15% 85%, rgba(233,189,121,.07), transparent 24%),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.012) 0 1px, transparent 1px 4px),
+        var(--black);
+      font-family:Oswald, Arial, sans-serif;
+    }
+
+    body:before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:.16;
+      background-image:
+        radial-gradient(#e9bd79 0.6px, transparent .7px),
+        radial-gradient(#e22a16 .45px, transparent .55px);
+      background-size:19px 19px, 31px 31px;
+      background-position:0 0, 8px 11px;
+      mix-blend-mode:screen;
+    }
+
+    .page{
+      width:min(100%, 520px);
+      margin:auto;
+      padding:28px 20px 34px;
+      position:relative;
+    }
+
+    .top-rule,.bottom-rule{
+      height:1px;
+      background:linear-gradient(90deg, transparent, var(--red), transparent);
+      margin:2px 0 20px;
+    }
+
+    .brand{
+      text-align:center;
+      padding:4px 0 10px;
+    }
+
+    .logo{
+      display:block;
+      width:min(78vw, 330px);
+      margin:0 auto 8px;
+      filter:drop-shadow(0 10px 22px rgba(0,0,0,.65));
+    }
+
+    .eyebrow{
+      color:var(--red);
+      font-size:16px;
+      font-weight:700;
+      letter-spacing:4px;
+      text-transform:uppercase;
+      margin:4px 0 10px;
+    }
+
+    h1{
+      margin:0;
+      font-family:"Alfa Slab One", Georgia, serif;
+      font-size:clamp(38px, 12vw, 64px);
+      line-height:.95;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      color:var(--cream);
+      text-shadow:2px 3px 0 #3a1f12;
+    }
+
+    .tagline{
+      max-width:380px;
+      margin:16px auto 0;
+      font-size:18px;
+      line-height:1.25;
+      color:var(--cream-light);
+    }
+
+    .divider{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin:25px 0 18px;
+      color:var(--red);
+    }
+    .divider:before,.divider:after{
+      content:"";
+      height:1px;
+      flex:1;
+      background:var(--line);
+    }
+    .flame{font-size:21px}
+
+    .buttons{
+      display:grid;
+      gap:12px;
+    }
+
+    .btn{
+      min-height:61px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      padding:14px 18px;
+      color:var(--cream);
+      text-decoration:none;
+      text-transform:uppercase;
+      letter-spacing:1.8px;
+      font-size:18px;
+      font-weight:700;
+      border:1px solid var(--red);
+      background:
+        linear-gradient(180deg, rgba(226,42,22,.13), rgba(226,42,22,.04)),
+        rgba(8,7,6,.82);
+      box-shadow:inset 0 0 0 1px rgba(233,189,121,.06), 0 8px 20px rgba(0,0,0,.25);
+      transition:.2s ease;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .btn:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(110deg, transparent 20%, rgba(233,189,121,.09) 50%, transparent 80%);
+      transform:translateX(-100%);
+      transition:.45s ease;
+    }
+
+    .btn:hover{transform:translateY(-2px);border-color:var(--cream)}
+    .btn:hover:before{transform:translateX(100%)}
+
+    .btn.primary{
+      background:linear-gradient(135deg,#b51f12,#e22a16);
+      color:#130a07;
+      border-color:#f0b86f;
+      box-shadow:0 9px 25px rgba(226,42,22,.22);
+    }
+
+    .icon{font-size:22px;line-height:1}
+
+    .social-title{ 
+    text-align:center; 
+    color:var(--red); 
+    font-size:19px; 
+    letter-spacing:2.5px; 
+    font-weight:700; 
+    text-transform:uppercase; 
+    margin:0; 
+    } 
+
+    .socials{ 
+    display:grid; 
+    grid-template-columns:repeat(3,1fr); 
+    gap:8px; 
+    margin-top:13px; 
+    } 
+
+    .social{ 
+    text-decoration:none; 
+    color:var(--cream); 
+    text-align:center; 
+    padding:14px 5px; 
+    border-top:1px solid var(--line); 
+    border-bottom:1px solid var(--line); 
+    font-size:13px; 
+    letter-spacing:1px; 
+    text-transform:uppercase; 
+    } 
+
+    .social strong{ 
+    display:block; 
+    margin-bottom:7px; 
+    color:var(--cream-light); 
+    height:28px;
+    } 
+
+    .social strong img{
+    width:28px;
+    height:28px;
+    object-fit:contain;
+    display:block;
+    margin:0 auto;
+    }
+
+    .phone{
+      display:block;
+      text-align:center;
+      text-decoration:none;
+      color:var(--red);
+      font-size:27px;
+      font-weight:700;
+      letter-spacing:4px;
+      padding:20px 0 8px;
+    }
+
+    .footer{
+      text-align:center;
+      color:#745d47;
+      font-size:12px;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      padding-top:18px;
+    }
+
+    .fire{
+      color:var(--red);
+      font-size:28px;
+      margin-bottom:7px;
+    }
+
+    @media (min-width:700px){
+      .page{padding-top:45px}
+      .buttons{grid-template-columns:1fr 1fr}
+      .btn.primary{grid-column:1/-1}
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="top-rule"></div>
+
+    <header class="brand">
+      <img class="logo" src="logo-bajo-fuego-bg.png" alt="Bajo Fuego Pizzería">
+      <div class="eyebrow">Pizzería</div>
+      <h1>Bajo Fuego</h1>
+      <p class="tagline">Donde la masa se encuentra con el fuego<br>y cada sabor cuenta una historia.</p>
+    </header>
+
+    <div class="divider"><span class="flame">🔥</span></div>
+
+    <section class="buttons" aria-label="Acciones">
+      <a class="btn primary" href="https://wa.me/542664777344" target="_blank" rel="noopener">
+        <span class="icon">💬</span> Pedir por WhatsApp
+      </a>
+
+      <a class="btn" href="https://drive.google.com/drive/folders/17KmMDl7AO0bn1aMrR5sDVPsvedYdNFJN?usp=sharing" target="_blank" rel="noopener">
+        <span class="icon">🍕</span> Ver menú / carta
+      </a>
+
+      <!-- Reemplazar #PROMOCIONES# por el link cuando el cliente lo entregue -->
+      <a class="btn" href="https://drive.google.com/drive/folders/17KmMDl7AO0bn1aMrR5sDVPsvedYdNFJN?usp=sharing" target="_blank" rel="noopener">
+        <span class="icon">🔥</span> Promociones
+      </a>
+    </section>
+
+    <div class="divider"><span class="flame">✦</span></div>
+
+    <section>
+      <h2 class="social-title">Seguinos en nuestras redes</h2>
+
+      <div class="socials">
+        <a class="social" href="https://www.instagram.com/bajofuegosl" target="_blank" rel="noopener">
+          <strong><img src="/icon-ig.png" alt=""></strong>Instagram
+        </a>
+        <a class="social" href="https://www.tiktok.com/@bajofuego.sl" target="_blank" rel="noopener">
+          <strong><img src="/icon-tiktok.png" alt=""></strong>TikTok
+        </a>
+        <a class="social" href="https://wa.me/542664777344">
+          <strong><img src="/icon-wsp.png" alt=""></strong>WhatsApp
+        </a>
+      </div>
+
+      <a class="phone" href="https://wa.me/542664777344" target="_blank" rel="noopener">
+        266 477 7344
+      </a>
+    </section>
+
+    <div class="bottom-rule"></div>
+
+    <footer class="footer">
+      <div class="fire">♨</div>
+      Bajo Fuego Pizzería · San Luis
+    </footer>
+  </main>
+</body>
+</html>
